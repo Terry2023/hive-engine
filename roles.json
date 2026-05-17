@@ -1,0 +1,68 @@
+{
+  "version": "3.1",
+  "description": "CQG Research Hive-Mind Role Definitions",
+  "roles": {
+    "synthesizer": {
+      "model": "mistral:7b",
+      "description": "Cross-disciplinary synthesis and proposal generation.",
+      "mbti": "INFJ",
+      "prompt_template": "Your role: SYNTHESIZER. Create a highly structured, forward-thinking proposal."
+    },
+    "counter": {
+      "model": "llama3.1:8b",
+      "description": "Devil's advocate designed to break proposals.",
+      "mbti": "ENTP",
+      "prompt_template": "Your role: COUNTER. Tear this proposal apart, focusing on flaws, risks, and edge cases."
+    },
+    "validator": {
+      "model": "deepseek-r1:14b",
+      "description": "Final gatekeeper and FI-13 arbiter.",
+      "mbti": "INTJ",
+      "prompt_template": "Your role: VALIDATOR. Act as the supreme judge. Review the proposal and critique to deliver a clear verdict."
+    }
+  },
+  
+  "workflows": {
+    "quick": {
+      "description": "Fast exploration (2 models)",
+      "roles": ["instinct", "simplifier"],
+      "use_case": "Quick checks, brainstorming, simple questions"
+    },
+    "standard": {
+      "description": "Balanced analysis (4 models)",
+      "roles": ["instinct", "simplifier", "counter", "derivator"],
+      "use_case": "Most technical questions"
+    },
+    "deep": {
+      "description": "Full hive consensus (6 models)",
+      "roles": ["instinct", "simplifier", "counter", "derivator", "synthesizer", "validator"],
+      "use_case": "Important decisions, paper sections, complex problems"
+    },
+    "technical": {
+      "description": "Math-heavy deep dive (3 models)",
+      "roles": ["derivator", "specialist", "validator"],
+      "use_case": "Derivations, proofs, technical verification"
+    },
+    "brainstorm": {
+      "description": "Creative exploration (3 models)",
+      "roles": ["instinct", "simplifier", "synthesizer"],
+      "use_case": "Generating ideas, exploring possibilities"
+    }
+  },
+  
+  "mbti_metadata": {
+    "description": "Cognitive diversity ensures robust analysis",
+    "coverage": {
+      "perceiving": ["Se", "Si", "Ne", "Ni"],
+      "judging": ["Te", "Ti", "Fe", "Fi"]
+    },
+    "notes": "Each MBTI brings different strengths:\n- ESTP/ISTJ: Grounded in concrete data\n- INTP/INTJ: Abstract systematic thinking\n- ENFP/INFJ: Pattern recognition and synthesis\n- Counter and Specialist both INTJ for rigorous skepticism"
+  },
+  
+  "ollama_defaults": {
+    "temperature": 0.3,
+    "top_p": 0.9,
+    "num_ctx": 8192,
+    "repeat_penalty": 1.1
+  }
+}
